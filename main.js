@@ -50,6 +50,34 @@ function findGame(gameName) {
     }
 }
 
-function addNewGame() {
+function addNewGamePage() {
     window.location.href = "addGame.html"
+}
+
+function addGame() {
+    const cardGame = document.getElementById("input").value;
+    const bg = document.getElementById("card").style.backgroundImage;
+
+    let games = JSON.parse(localStorage.getItem("jogos")) || []
+    games.push({name: cardGame, background: bg});
+
+    localStorage.setItem("jogos", JSON.stringify(games));
+
+    window.location.href = "personalPage.html";
+}
+
+function getNewGame() {
+    const games = JSON.parse(localStorage.getItem("jogos")) || [];
+
+    games.forEach(jogo => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.id = "card";
+        div.style.marginTop = "30px";
+        div.style.backgroundImage = jogo.background;
+        div.style.backgroundSize = "cover";
+        div.style.backgroundPosition = "center";
+        div.style.setProperty('--after-content', `"${jogo.name}"`);
+        document.getElementById("container").appendChild(div);
+    });
 }

@@ -13,7 +13,7 @@
     <script src="/main.js"></script>
 </head>
 
-<body class="body">
+<body class="body" onload="getNewGame()">
     <div>
         <nav class="navbar">
             <div class="logo">
@@ -25,9 +25,10 @@
             </ul>
         </nav>
     </div>
-    <div onclick="addNewGame()">
-        <div class="card" style="margin-top: 30px;">+</div>
+    <div>
+        <div onclick="addNewGamePage()" class="cardAdd" style="margin-top: 30px;">+</div>
     </div>
+    <div id="container" class="container"></div>
 </body>
 
 </html>
