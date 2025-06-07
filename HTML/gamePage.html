@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Já Joguei</title>
+
+    <link rel="stylesheet" href="/CSS/navBar.css">
+    <link rel="stylesheet" href="/CSS/background.css">
+    <link rel="stylesheet" href="/CSS/gamePage.css">
+    <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
+    <script src="/main.js"></script>
+</head>
+
+<body class="body" onload="getGamePage()">
+    <div>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/Images/Logo.png" alt="Coiso">
+            </div>
+            <ul>
+                <li><a href="/HTML/home.html">Home</a></li>
+                <li><a href="/HTML/personalPage.html">Meus Jogos</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <h1 id="gameTitle" class="gameTitle">Titulo</h1>
+    </div>
+    <div class="gameOpinion">
+        <div id="imageContainer" class="imageContainer">
+        </div>
+        <div>
+            <div class="gameGrade">
+                <h3>Nota</h3>
+                <div class="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+            </div>
+            <div class="gameGrade">
+                <h3>História</h3>
+                <div class="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+            </div>
+            <div class="gameGrade">
+                <h3>Gameplay</h3>
+                <div class="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                </div>
+            </div>
+            <div>
+                <h3>Comentário</h3>
+                <input type="text" class="commentInput" placeholder="Escreva seu comentário aqui...">
+            </div>
+            <div>
+                <button onclick="removeGame()"> Remover Jogo </button>
+            </div>
+        </div>
+    </div>
+    <script src="/rating.js"></script>
+</body>
+
+</html>
