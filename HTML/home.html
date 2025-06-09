@@ -8,11 +8,12 @@
 
     <link rel="stylesheet" href="/CSS/navBar.css">
     <link rel="stylesheet" href="/CSS/background.css">
-    <link rel="shortcut icon" href="./Images/Logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/CSS/home.css">
+    <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
     <script src="/main.js"></script>
 </head>
 
-<body class="body">
+<body class="body" onload="getGameDevelopers(), getGameTags()">
     <div>
         <nav class="navbar">
             <div class="logo">
@@ -23,6 +24,23 @@
                 <li><a href="/HTML/personalPage.html">Meus Jogos</a></li>
             </ul>
         </nav>
+    </div>
+    <div>
+        <h1 class="title">Meu Perfil</h1>
+    </div>
+    <div class="gameInfos">
+        <div>
+            <h2>Gêneros</h2>
+            <h2>Gráfico</h2>
+        </div>
+        <div>
+            <h2>Tags</h2>
+            <ul id="tags" class="tags"></ul>
+        </div>
+        <div>
+            <h2>Empresas</h2>
+            <ul id="empresas" class="empresas"></ul>
+        </div>
     </div>
 </body>
 

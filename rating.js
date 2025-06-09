@@ -19,3 +19,21 @@ stars.forEach((star, index) => {
     });
   });
 });
+
+
+function writeComment() {
+  const commentInput = document.getElementById('commentInput');
+    const params = new URLSearchParams(window.location.search);
+  const jogo = params.get("name");
+  localStorage.setItem('userComment' + jogo, commentInput.value);
+}
+
+function loadComment() {
+  const commentInput = document.getElementById('commentInput');
+  const params = new URLSearchParams(window.location.search);
+  const jogo = params.get("name");
+  const savedComment = localStorage.getItem('userComment' + jogo);
+  if (savedComment) {
+    commentInput.value = savedComment;
+  }
+}

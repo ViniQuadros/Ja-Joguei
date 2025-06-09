@@ -13,7 +13,7 @@
     <script src="/main.js"></script>
 </head>
 
-<body class="body" onload="getGamePage()">
+<body class="body" onload="getGamePage(), loadComment()">
     <div>
         <nav class="navbar">
             <div class="logo">
@@ -32,6 +32,11 @@
         <div id="imageContainer" class="imageContainer">
         </div>
         <div>
+            <div class="status">
+                <button id="statusJogando" class="status" onclick="changeStatus()">Estou Jogando</button>
+                <button id="statusJogar" class="status" onclick="changeStatus()">Quero Jogar</button>
+                <button id="statusJoguei" class="status" onclick="changeStatus()">Já Joguei</button>
+            </div>
             <div class="gameGrade">
                 <h3>Nota</h3>
                 <div class="star-rating">
@@ -64,10 +69,11 @@
             </div>
             <div>
                 <h3>Comentário</h3>
-                <input type="text" class="commentInput" placeholder="Escreva seu comentário aqui...">
+                <input type="text"
+                id="commentInput" class="commentInput" placeholder="Escreva seu comentário aqui..." oninput="writeComment()">
             </div>
             <div>
-                <button onclick="removeGame()"> Remover Jogo </button>
+                <button class="remove" onclick="removeGame()"> Remover Jogo </button>
             </div>
         </div>
     </div>
