@@ -107,6 +107,17 @@ function getGamePage() {
     document.getElementById("imageContainer").appendChild(div);
 }
 
+function changeStatus(clickedButton) {
+    const buttons = document.querySelectorAll('.status');
+
+    if (clickedButton.classList.contains('active')) {
+        clickedButton.classList.remove('active');
+    } else {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        clickedButton.classList.add('active');
+    }
+}
+
 function removeGame() {
     const gameTitle = document.getElementById("gameTitle");
     const games = JSON.parse(localStorage.getItem("jogos"));
