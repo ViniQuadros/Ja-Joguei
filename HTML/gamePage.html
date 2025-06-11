@@ -13,7 +13,7 @@
     <script src="/main.js"></script>
 </head>
 
-<body class="body" onload="getGamePage(), loadComment()">
+<body class="body" onload="getGamePage(), loadRating(), loadStatus()">
     <div>
         <nav class="navbar">
             <div class="logo">
@@ -25,7 +25,8 @@
             </ul>
         </nav>
     </div>
-    <div>
+    <div class="topo">
+        <button class="backBtn" onclick="goBack()"> Voltar </button>
         <h1 id="gameTitle" class="gameTitle">Titulo</h1>
     </div>
     <div class="gameOpinion">

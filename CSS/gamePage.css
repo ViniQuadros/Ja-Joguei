@@ -1,28 +1,48 @@
 .cardUnique {
     position: relative;
-    width: 220px;
-    height: 320px;
+    width: 320px;
+    height: 350px;
     background: rgb(63, 59, 59);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 25px;
     font-weight: bold;
     border-radius: 15px;
-    margin-left: 200px;
+}
+
+.topo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gameTitle {
-    top: 10px;
-    left: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
-    text-align: center;
+}
+
+.backBtn {
+    position: absolute;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    left: 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 2px solid white;
+    border-color: #A53860;
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+}
+
+.backBtn:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(119, 7, 122, 1);
 }
 
 .gameOpinion {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
 }
 
 .gameGrade {
@@ -63,26 +83,27 @@
 
 .status {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
+    align-items: left;
+    justify-content: left;
+    font-size: 15px;
     border-radius: 12px;
     border-color: white;
     cursor: pointer;
-    gap: 10px;
+    gap: 12px;
     color: rgb(0, 0, 0);
 }
 
-.status.active#statusJogando{
+.status.active#statusJogando {
     background-color: darkorange;
     color: #fff;
 }
-.status.active#statusJogar{
+
+.status.active#statusJogar {
     background-color: rgb(0, 110, 255);
     color: #fff;
 }
-.status.active#statusJoguei{
+
+.status.active#statusJoguei {
     background-color: rgb(9, 126, 38);
     color: #fff;
 }
@@ -91,19 +112,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;         
-    font-weight: bold;        
-    border-radius: 12px;     
-    border: none;             
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
     padding: 0.5em 1em;
     color: white;
     background-color: #e74c3c;
     cursor: pointer;
-    gap: 10px;              
+    gap: 10px;
     transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 0.5em;
     user-select: none;
     border-color: white;
+    margin-top: 20px;
 }
 
 

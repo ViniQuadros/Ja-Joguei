@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/CSS/addGame.css">
     <link rel="stylesheet" href="/CSS/navBar.css">
     <link rel="stylesheet" href="/CSS/background.css">
-    <link rel="shortcut icon" href="./Images/Logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
     <script src="/main.js"></script>
 </head>
 
@@ -28,9 +28,11 @@
     <div class="container">
         <div class="adding">
             <h1 class="question">Quer adicionar qual jogo?</h1>
-            <input id="input" class="input" placeholder="Nome do Jogo" oninput="findGame(this.value)">
-            <ul id="gameList">
-            </ul>
+            <div class="inputContainer">
+                <input id="input" class="input" placeholder="Nome do Jogo" oninput="findGame(this.value)">
+                <ul id="gameList" class="gameList">
+                </ul>
+            </div>
         </div>
         <div>
             <div id="card" class="card" style="margin-top: 30px;"></div>
@@ -39,6 +41,17 @@
     <div class="adicionar">
         <button class="addBtn" onclick="addGame()">Adicionar Jogo</button>
     </div>
+    <script>
+        document.addEventListener("click", function(event){
+            const adding = document.querySelector('.adding');
+            const gameList = document.getElementById('gameList');
+
+            // Verifica se o clique foi fora do input e da lista de jogos
+            if (!adding.contains(event.target)) {
+                gameList.innerHTML = '';
+            }
+        })
+    </script>
 </body>
 
 </html>

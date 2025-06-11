@@ -1,21 +1,35 @@
-const stars = document.querySelectorAll('.star');
-let currentRating = 0;
+document.querySelectorAll('.star-rating').forEach((container, ratingIndex) => {
+  const stars = container.querySelectorAll('.star');
+  const params = new URLSearchParams(window.location.search);
+  const jogo = params.get("name");
+  const ratingTypes = ["nota", "historia", "gameplay"];
 
-stars.forEach((star, index) => {
-  star.addEventListener('mouseover', () => {
+  let type = ratingTypes[ratingIndex];
+
+  const savedRating = localStorage.getItem(`rating_${jogo}_${type}`);
+  if (savedRating !== null) {
     stars.forEach((s, i) => {
-      s.classList.toggle('hover', i <= index);
+      s.classList.toggle('selected', i < savedRating);
     });
-  });
+  }
 
-  star.addEventListener('mouseout', () => {
-    stars.forEach(s => s.classList.remove('hover'));
-  });
+  stars.forEach((star, index) => {
+    star.addEventListener('mouseover', () => {
+      stars.forEach((s, i) => {
+        s.classList.toggle('hover', i <= index);
+      });
+    });
 
-  star.addEventListener('click', () => {
-    currentRating = index;
-    stars.forEach((s, i) => {
-      s.classList.toggle('selected', i <= currentRating);
+    star.addEventListener('mouseout', () => {
+      stars.forEach(s => s.classList.remove('hover'));
+    });
+
+    star.addEventListener('click', () => {
+      stars.forEach((s, i) => {
+        s.classList.toggle('selected', i <= index);
+      });
+
+      localStorage.setItem(`rating_${jogo}_${type}`, index + 1);
     });
   });
 });
@@ -23,12 +37,12 @@ stars.forEach((star, index) => {
 
 function writeComment() {
   const commentInput = document.getElementById('commentInput');
-    const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   const jogo = params.get("name");
   localStorage.setItem('userComment' + jogo, commentInput.value);
 }
 
-function loadComment() {
+function loadRating() {
   const commentInput = document.getElementById('commentInput');
   const params = new URLSearchParams(window.location.search);
   const jogo = params.get("name");
@@ -36,4 +50,8 @@ function loadComment() {
   if (savedComment) {
     commentInput.value = savedComment;
   }
+}
+
+function goBack() {
+  window.location.href = "personalPage.html";
 }

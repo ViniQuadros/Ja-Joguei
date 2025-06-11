@@ -1,9 +1,6 @@
 .navbar {
-  position: relative;
-  width: 100%;
   background-color: #A53860;
   display: flex;
-  justify-content: left;
   z-index: 1;
   border-radius: 10px;
 }

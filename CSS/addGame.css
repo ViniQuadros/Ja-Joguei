@@ -6,9 +6,48 @@
 }
 
 .adding {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.gameList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 6px 6px;
+  box-sizing: border-box;
+  display: none;
+}
+
+.gameList.show {
+  display: block;
+}
+
+.game-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.game-item:hover {
+  background-color: #eee;
 }
 
 .question {
@@ -76,18 +115,6 @@
   opacity: 1;
 }
 
-#gameList {
-  max-height: 200px;
-  width: 21em;
-  padding: 0;
-  overflow-y: auto;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-  position: relative;
-}
-
 .game-item {
   padding: 10px 15px;
   border-bottom: 1px solid #eee;
@@ -123,14 +150,14 @@
   background-color: white;
 }
 
-.adicionar{
+.adicionar {
   margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.addBtn{
+.addBtn {
   background-color: green;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   width: 120px;
@@ -142,7 +169,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.addBtn:hover{
+.addBtn:hover {
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }

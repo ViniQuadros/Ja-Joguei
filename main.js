@@ -16,7 +16,9 @@ function findGame(gameName) {
                 if (data.results.length > 0) {
                     data.results.forEach(game => {
                         const input = document.getElementById("input");
+                        const list = document.getElementById("gameList");
                         const item = document.createElement("li");
+                        list.classList.add("show");
                         item.textContent = game.name;
                         item.classList.add("game-item");
 
@@ -109,23 +111,65 @@ function getGamePage() {
 
 function changeStatus(clickedButton) {
     const buttons = document.querySelectorAll('.status');
+    const params = new URLSearchParams(window.location.search);
+    const jogo = params.get("name");
 
-    if (clickedButton.classList.contains('active')) {
-        clickedButton.classList.remove('active');
-    } else {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        clickedButton.classList.add('active');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+
+    clickedButton.classList.add('active');
+    localStorage.setItem(`gameStatus-${jogo}`, clickedButton.textContent.trim());
+}
+
+function loadStatus() {
+    const buttons = document.querySelectorAll('.status');
+    const params = new URLSearchParams(window.location.search);
+    const jogo = params.get("name");
+    const gameStatus = localStorage.getItem(`gameStatus-${jogo}`);
+
+    if (gameStatus) {
+        buttons.forEach(button => {
+            if (button.textContent.trim() === gameStatus) {
+                button.classList.add('active');
+            }
+            else {
+                button.classList.remove('active');
+            }
+        });
     }
 }
 
 function removeGame() {
     const gameTitle = document.getElementById("gameTitle");
     const games = JSON.parse(localStorage.getItem("jogos"));
+
+    //Remove o comentário do jogo
+    const params = new URLSearchParams(window.location.search);
+    const jogo = params.get("name");
+    const savedComment = localStorage.getItem('userComment' + jogo);
+    if (savedComment) {
+        localStorage.removeItem('userComment' + jogo);
+    }
+
+    //Remove a avaliação do jogo
+    document.querySelectorAll('.gameGrade').forEach(section => {
+        const category = section.querySelector('h3').textContent;
+        localStorage.removeItem(`rating-${category}`);
+
+        const stars = section.querySelectorAll('.star');
+        stars.forEach(star => {
+            star.classList.remove('selected');
+        });
+    });
+
+    //Remove o jogo da lista
     const index = games.findIndex(jogo => jogo.name === gameTitle.textContent);
     if (index !== -1) {
         games.splice(index, 1);
     }
     localStorage.setItem("jogos", JSON.stringify(games));
+
     window.location.href = "personalPage.html";
 }
 
