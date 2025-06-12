@@ -1,11 +1,3 @@
-.gameInfos{
-    color: white;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    text-align: center;
-    justify-content: center;
-}
-
 .title {
     font-size: 45px;
     font-weight: bold;
@@ -13,9 +5,25 @@
     color: white;
 }
 
-.empresas, .tags{
-    font-size: 20px;
-    display: list-item;
+.gameInfos {
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    justify-content: center;
+}
+
+.empresas,
+.tags {
+    font-size: 18px;
     list-style: none;
     font-weight: none;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#myChart {
+  width: 100px;
+  height: 100px;
 }

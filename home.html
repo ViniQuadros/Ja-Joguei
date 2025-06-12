@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="/CSS/background.css">
     <link rel="stylesheet" href="/CSS/home.css">
     <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/main.js"></script>
 </head>
 
-<body class="body" onload="getGameDevelopers(), getGameTags()">
+<body class="body" onload="getGameDevelopers(), getGameTags(), getGameGenres()">
     <div>
         <nav class="navbar">
             <div class="logo">
@@ -31,7 +32,7 @@
     <div class="gameInfos">
         <div>
             <h2>Gêneros</h2>
-            <h2>Gráfico</h2>
+            <canvas id="myChart" width="100" height="100"></canvas>
         </div>
         <div>
             <h2>Tags</h2>

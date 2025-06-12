@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/CSS/navBar.css">
     <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
     <script src="/main.js"></script>
+    <script src="/filters.js"></script>
 </head>
 
 <body class="body" onload="getNewGame(), getTotal()">
@@ -20,15 +21,25 @@
                 <img src="/Images/Logo.png" alt="Logo">
             </div>
             <ul>
-                <li><a href="home.html">Home</a></li>
+                <li><a href="../home.html">Home</a></li>
                 <li><a href="personalPage.html">Meus Jogos</a></li>
             </ul>
         </nav>
     </div>
     <div class="header">
         <div onclick="addNewGamePage()" class="cardAdd" style="margin-top: 30px;">+</div>
-        <div class="containerTotal"> 
+        <div class="containerTotal">
             <h2 id="total" class="total"> Jogos </h2>
+            <div class="filtro">
+                <button class="filtroBtn"> Filtro </button>
+                <div class="filtroConteudo">
+                    <p onclick="alfabeticoUp()">Alfabética ↑</p>
+                    <p onclick="alfabeticoDown()">Alfabética ↓</p>
+                    <p>Estou Jogando</p>
+                    <p>Já Joguei</p>
+                    <p>Quero Jogar</p>
+                </div>
+            </div>
         </div>
     </div>
     <div id="container" class="container"></div>

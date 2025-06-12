@@ -1,4 +1,4 @@
-const apiKey = ""; //Chave da API
+const apiKey = "8115b43cfa9648f7a6680b7e4af424b0"; //Chave da API
 
 function findGame(gameName) {
     const container = document.getElementById("gameList");
@@ -81,6 +81,20 @@ function getNewGame() {
         div.style.backgroundSize = "cover";
         div.style.backgroundPosition = "center";
         div.style.setProperty('--after-content', `"${jogo.name}"`);
+
+        const gameStatus = localStorage.getItem(`gameStatus-${jogo.name}`);
+        if (gameStatus === "Estou Jogando") {
+            div.style.borderColor = "orange";
+        }
+        else if (gameStatus === "Quero Jogar") {
+            div.style.borderColor = "blue";
+        }
+        else if (gameStatus === "Já Joguei") {
+            div.style.borderColor = "green";
+        }
+        else {
+            div.style.borderColor = "white";
+        }
 
         div.addEventListener("click", () => {
             window.location.href = "gamePage.html?name=" + encodeURIComponent(jogo.name) + "&background=" + encodeURIComponent(jogo.background);
@@ -181,89 +195,148 @@ function getTotal() {
 async function getGameDevelopers() {
     const empresas = document.getElementById("empresas");
     empresas.innerHTML = "";
+
     const jogos = JSON.parse(localStorage.getItem("jogos")) || [];
-    const desenvolvedores = new Set();
+    const devSet = new Set();
 
-    for (const jogo of jogos) {
+    const requests = jogos.map(async (jogo) => {
         try {
-            const searchResponse = await fetch(`https://api.rawg.io/api/games?search=${encodeURIComponent(jogo.name)}&key=${apiKey}`);
-            if (!searchResponse.ok) {
-                throw new Error("Erro ao buscar jogo");
-            }
+            const searchRes = await fetch(`https://api.rawg.io/api/games?search=${encodeURIComponent(jogo.name)}&key=${apiKey}`);
+            if (!searchRes.ok) throw new Error("Erro ao buscar jogo");
 
-            const searchData = await searchResponse.json();
+            const searchData = await searchRes.json();
             const game = searchData.results[0];
-            if (!game) {
-                continue;
-            }
+            if (!game) return;
 
-            const gameDetailsResponse = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
-            if (!gameDetailsResponse.ok) {
-                throw new Error("Erro ao buscar detalhes do jogo");
-            }
+            const detailsRes = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
+            if (!detailsRes.ok) throw new Error("Erro ao buscar detalhes");
 
-            const gameDetails = await gameDetailsResponse.json();
-
-            gameDetails.developers.forEach(dev => {
-                if (!desenvolvedores.has(dev.name)) {
-                    desenvolvedores.add(dev.name);
-                }
-            })
+            const gameDetails = await detailsRes.json();
+            gameDetails.developers.forEach(dev => devSet.add(dev.name));
         } catch (error) {
-            const item = document.createElement("li");
-            item.textContent = `Erro com jogo "${jogo.name}": ${error.message}`;
-            empresas.appendChild(item);
+            const li = document.createElement("li");
+            li.textContent = `Erro com jogo "${jogo.name}": ${error.message}`;
+            li.classList.add("game-item");
+            empresas.appendChild(li);
         }
-    }
+    });
 
-    desenvolvedores.forEach(dev => {
-        const item = document.createElement("li");
-        item.textContent = dev;
-        item.classList.add("game-item");
-        empresas.appendChild(item);
-    })
+    await Promise.all(requests);
+
+    for (const dev of devSet) {
+        const li = document.createElement("li");
+        li.textContent = dev;
+        li.classList.add("game-item");
+        empresas.appendChild(li);
+    }
 }
 
+
 async function getGameTags() {
-    const tags = document.getElementById("tags");
+    const tagsElement = document.getElementById("tags");
+    const empresas = document.getElementById("empresas");
+    tagsElement.innerHTML = "";
     empresas.innerHTML = "";
+
     const jogos = JSON.parse(localStorage.getItem("jogos")) || [];
-    const gameTags = new Set();
+    const tagSet = new Set();
 
-    for (const jogo of jogos) {
+    const requests = jogos.map(async (jogo) => {
         try {
-            const searchResponse = await fetch(`https://api.rawg.io/api/games?search=${encodeURIComponent(jogo.name)}&key=${apiKey}`);
-            if (!searchResponse.ok) {
-                throw new Error("Erro ao buscar jogo");
-            }
+            const searchRes = await fetch(`https://api.rawg.io/api/games?search=${encodeURIComponent(jogo.name)}&key=${apiKey}`);
+            if (!searchRes.ok) throw new Error("Erro ao buscar jogo");
 
-            const searchData = await searchResponse.json();
+            const searchData = await searchRes.json();
             const game = searchData.results[0];
-            if (!game) {
-                continue;
-            }
+            if (!game) return;
 
-            const gameDetailsResponse = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
-            if (!gameDetailsResponse.ok) {
-                throw new Error("Erro ao buscar detalhes do jogo");
-            }
+            const detailsRes = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
+            if (!detailsRes.ok) throw new Error("Erro ao buscar detalhes");
 
-            const gameDetails = await gameDetailsResponse.json();
-
-            gameDetails.tags.forEach(tag => {
-                gameTags.add(tag.name);
-            })
+            const gameDetails = await detailsRes.json();
+            gameDetails.tags.forEach(tag => tagSet.add(tag.name));
         } catch (error) {
-            const item = document.createElement("li");
-            item.textContent = `Erro com jogo "${tag.name}": ${error.message}`;
-            tags.appendChild(item);
+            const li = document.createElement("li");
+            li.textContent = `Erro com jogo "${jogo.name}": ${error.message}`;
+            li.classList.add("game-item");
+            tagsElement.appendChild(li);
         }
-    }
+    });
 
-    gameTags.forEach(tag => {
-        const item = document.createElement("li");
-        item.textContent = tag;
-        item.classList.add("game-item");
-        tags.appendChild(item);
-    })
+    await Promise.all(requests);
+
+    for (const tag of tagSet) {
+        const li = document.createElement("li");
+        li.textContent = tag;
+        li.classList.add("game-item");
+        tagsElement.appendChild(li);
+    }
+}
+
+
+async function getGameGenres() {
+    const tags = document.getElementById("tags");
+    tags.innerHTML = "";
+
+    const jogos = JSON.parse(localStorage.getItem("jogos")) || [];
+    const genreCount = {};
+
+    const requests = jogos.map(async (jogo) => {
+        try {
+            const searchRes = await fetch(`https://api.rawg.io/api/games?search=${encodeURIComponent(jogo.name)}&key=${apiKey}`);
+            if (!searchRes.ok) throw new Error("Erro ao buscar jogo");
+
+            const searchData = await searchRes.json();
+            const game = searchData.results[0];
+            if (!game) return;
+
+            const detailsRes = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
+            if (!detailsRes.ok) throw new Error("Erro ao buscar detalhes");
+
+            const details = await detailsRes.json();
+            details.genres.forEach(genre => {
+                genreCount[genre.name] = (genreCount[genre.name] || 0) + 1;
+            });
+        } catch (error) {
+            const li = document.createElement("li");
+            li.textContent = `Erro com "${jogo.name}": ${error.message}`;
+            li.classList.add("game-item");
+            tags.appendChild(li);
+        }
+    });
+
+    await Promise.all(requests);
+
+    const fragment = document.createDocumentFragment();
+    Object.entries(genreCount).forEach(([genre]) => {
+        const li = document.createElement("li");
+        li.textContent = genre;
+        li.classList.add("game-item");
+        fragment.appendChild(li);
+    });
+    tags.appendChild(fragment);
+
+    const colors = Object.keys(genreCount).map((_, i) =>
+        `hsl(${(i * 360 / Object.keys(genreCount).length)}, 70%, 60%)`
+    );
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: Object.keys(genreCount),
+            datasets: [{
+                data: Object.values(genreCount),
+                backgroundColor: colors
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
 }
