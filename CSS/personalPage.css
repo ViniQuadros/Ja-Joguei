@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   width: 100%;
   margin: auto;
   margin-left: 20px;
@@ -11,7 +11,7 @@
   margin-left: 20px;
   width: 220px;
   height: 70px;
-  background: mediumturquoise;
+  background: #420097;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +33,7 @@
   justify-content: center;
   font-size: 30px;
   font-weight: bold;
-  background-color: lightblue;
+  background-color:#2B0062;
   transition: all 0.5s;
 }
 
@@ -87,7 +87,7 @@
   font-size: 25px;
   color: #ffffff;
   font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(20, 0, 46, 0.5);
   transition: all 0.5s;
 }
 

@@ -1,11 +1,18 @@
-.navbar {
-  background-color: #A53860;
-  display: flex;
-  z-index: 1;
-  border-radius: 10px;
+body, html {
+  margin: 0;
+  padding: 0;
 }
 
-.logo img{
+.navbar {
+  background-color: #14002E;
+  display: flex;
+  z-index: 1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-sizing: border-box;
+}
+
+.logo img {
   height: 70px;
   width: 70px;
   margin-left: 20px;
@@ -17,11 +24,11 @@
   font-size: 25px;
   list-style: none;
   display: flex;
-  gap: 15px;    
+  gap: 15px;
 }
 
 .navbar a {
-  color: rgb(249, 219, 189);
+  color: #ffff;
   text-decoration: none;
 }
 

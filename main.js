@@ -1,4 +1,4 @@
-const apiKey = "8115b43cfa9648f7a6680b7e4af424b0"; //Chave da API
+const apiKey = ""; //Chave da API
 
 function findGame(gameName) {
     const container = document.getElementById("gameList");
