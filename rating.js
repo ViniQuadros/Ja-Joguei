@@ -1,3 +1,4 @@
+//Ao carregar a página de jogos, carrega todas as informações das avaliações
 document.querySelectorAll('.star-rating').forEach((container, ratingIndex) => {
   const stars = container.querySelectorAll('.star');
   const params = new URLSearchParams(window.location.search);
@@ -34,7 +35,7 @@ document.querySelectorAll('.star-rating').forEach((container, ratingIndex) => {
   });
 });
 
-
+//Escreve o comentário no input
 function writeComment() {
   const commentInput = document.getElementById('commentInput');
   const params = new URLSearchParams(window.location.search);
@@ -42,6 +43,7 @@ function writeComment() {
   localStorage.setItem('userComment' + jogo, commentInput.value);
 }
 
+//Carrega o comentário salvo
 function loadRating() {
   const commentInput = document.getElementById('commentInput');
   const params = new URLSearchParams(window.location.search);
@@ -52,6 +54,7 @@ function loadRating() {
   }
 }
 
+//Retorna para a página pessoal
 function goBack() {
   window.location.href = "personalPage.html";
 }

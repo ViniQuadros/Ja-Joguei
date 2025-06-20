@@ -22,8 +22,11 @@
             </div>
             <ul>
                 <li><a href="../home.html">Home</a></li>
-                <li><a href="personalPage.html">Meus Jogos</a></li>
+                <li><a href="/HTML/personalPage.html">Meus Jogos</a></li>
             </ul>
+            <div class = "user">
+                <a href="/HTML/account.html"><img src="../Images/user.png" alt="Img user"></a>
+            </div>
         </nav>
     </div>
     <div class="header">
@@ -35,9 +38,9 @@
                 <div class="filtroConteudo">
                     <p onclick="alfabeticoUp()">Alfabética ↑</p>
                     <p onclick="alfabeticoDown()">Alfabética ↓</p>
-                    <p>Estou Jogando</p>
-                    <p>Já Joguei</p>
-                    <p>Quero Jogar</p>
+                    <p onclick="orderByStatus('Estou Jogando')">Estou Jogando</p>
+                    <p onclick="orderByStatus('Já Joguei')">Já Joguei</p>
+                    <p onclick="orderByStatus('Quero Jogar')">Quero Jogar</p>
                 </div>
             </div>
         </div>

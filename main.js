@@ -1,9 +1,11 @@
 const apiKey = "8115b43cfa9648f7a6680b7e4af424b0"; //Chave da API
 
+//Função para buscar jogos na API e exibir na lista ao adicionar um jogo
 function findGame(gameName) {
     const container = document.getElementById("gameList");
     container.innerHTML = "";
 
+    //Retorna caso o campo de busca esteja vazio
     if (gameName.trim() === "") return;
 
     try {
@@ -13,35 +15,30 @@ function findGame(gameName) {
                 return response.json();
             })
             .then(data => {
-                if (data.results.length > 0) {
-                    data.results.forEach(game => {
-                        const input = document.getElementById("input");
-                        const list = document.getElementById("gameList");
-                        const item = document.createElement("li");
-                        list.classList.add("show");
-                        item.textContent = game.name;
-                        item.classList.add("game-item");
-
-                        const imgUrl = game.background_image;
-                        const card = document.getElementById("card");
-
-                        //Muda valores de texto para o nome do jogo clicado e a capa do card
-                        item.addEventListener("click", () => {
-                            input.value = item.textContent;
-                            document.querySelector('.card').style.setProperty('--after-content', `"${item.textContent}"`);
-                            card.style.backgroundImage = "url('" + imgUrl + "')";
-                            card.style.backgroundSize = "cover";
-                            card.style.backgroundPosition = "center";
-                            card.style.backgroundRepeat = "no-repeat";
-                        });
-                        container.appendChild(item);
-                    });
-                } else {
+                data.results.forEach(game => {
+                    const input = document.getElementById("input");
+                    const list = document.getElementById("gameList");
                     const item = document.createElement("li");
-                    item.textContent = "Jogo não encontrado";
+                    const card = document.getElementById("card");
+
+                    //Adiciona a classe "show" para exibir a lista de jogos
+                    list.classList.add("show");
                     item.classList.add("game-item");
+                    item.textContent = game.name;
+
+                    const imgUrl = game.background_image;
+
+                    //Muda valores de texto de input para o nome do jogo clicado e a capa do card
+                    item.addEventListener("click", () => {
+                        input.value = item.textContent;
+                        document.querySelector('.card').style.setProperty('--after-content', `"${item.textContent}"`);
+                        card.style.backgroundImage = "url('" + imgUrl + "')";
+                        card.style.backgroundSize = "cover";
+                        card.style.backgroundPosition = "center";
+                        card.style.backgroundRepeat = "no-repeat";
+                    });
                     container.appendChild(item);
-                }
+                });
             })
             .catch(error => {
                 const item = document.createElement("li");
@@ -49,26 +46,26 @@ function findGame(gameName) {
                 container.appendChild(item);
             });
     } catch (error) {
-        alert();
+        alert(error.message);
     }
 }
 
-function addNewGamePage() {
-    window.location.href = "addGame.html"
-}
-
+//Adiciona novo jogo na lista
 function addGame() {
     const cardGame = document.getElementById("input").value;
     const bg = document.getElementById("card").style.backgroundImage;
 
+    //Adiciona o jogo ao localStorage em uma array
     let games = JSON.parse(localStorage.getItem("jogos")) || []
     games.push({ name: cardGame, background: bg });
 
+    
     localStorage.setItem("jogos", JSON.stringify(games));
 
     window.location.href = "personalPage.html";
 }
 
+//Pega todos os jogos do localStorage e exibe na página
 function getNewGame() {
     const games = JSON.parse(localStorage.getItem("jogos")) || [];
 
@@ -80,8 +77,10 @@ function getNewGame() {
         div.style.backgroundImage = jogo.background;
         div.style.backgroundSize = "cover";
         div.style.backgroundPosition = "center";
+        div.setAttribute("game-name", jogo.name);
         div.style.setProperty('--after-content', `"${jogo.name}"`);
 
+        //Define a cor da borda do card com base no status do jogo
         const gameStatus = localStorage.getItem(`gameStatus-${jogo.name}`);
         if (gameStatus === "Estou Jogando") {
             div.style.borderColor = "orange";
@@ -104,6 +103,7 @@ function getNewGame() {
     });
 }
 
+//Pega o nome do jogo e o background da URL e cria uma página individual
 function getGamePage() {
     const params = new URLSearchParams(window.location.search);
     const jogo = params.get("name");
@@ -123,6 +123,7 @@ function getGamePage() {
     document.getElementById("imageContainer").appendChild(div);
 }
 
+//Muda o status ao pressionar o botão
 function changeStatus(clickedButton) {
     const buttons = document.querySelectorAll('.status');
     const params = new URLSearchParams(window.location.search);
@@ -136,6 +137,7 @@ function changeStatus(clickedButton) {
     localStorage.setItem(`gameStatus-${jogo}`, clickedButton.textContent.trim());
 }
 
+//Carrega o status do jogo ao abrir a página daquele mesmo jogo
 function loadStatus() {
     const buttons = document.querySelectorAll('.status');
     const params = new URLSearchParams(window.location.search);
@@ -154,16 +156,18 @@ function loadStatus() {
     }
 }
 
+//Remove o jogo da lista e limpa os comentários, avaliações e status
 function removeGame() {
     const gameTitle = document.getElementById("gameTitle");
     const games = JSON.parse(localStorage.getItem("jogos"));
 
-    //Remove o comentário do jogo
+    //Remove o comentário e status do jogo
     const params = new URLSearchParams(window.location.search);
     const jogo = params.get("name");
     const savedComment = localStorage.getItem('userComment' + jogo);
     if (savedComment) {
         localStorage.removeItem('userComment' + jogo);
+        localStorage.removeItem(`gameStatus-${jogo}`);
     }
 
     //Remove a avaliação do jogo
@@ -187,11 +191,7 @@ function removeGame() {
     window.location.href = "personalPage.html";
 }
 
-function getTotal() {
-    const total = document.getElementById("total");
-    total.textContent = "Jogos: " + (JSON.parse(localStorage.getItem("jogos")) || []).length;
-}
-
+//Pega os desenvolvedores e exibe na página
 async function getGameDevelopers() {
     const empresas = document.getElementById("empresas");
     empresas.innerHTML = "";
@@ -231,7 +231,7 @@ async function getGameDevelopers() {
     }
 }
 
-
+//Pega as Tags do jogo e exibe na página
 async function getGameTags() {
     const tagsElement = document.getElementById("tags");
     const empresas = document.getElementById("empresas");
@@ -273,7 +273,7 @@ async function getGameTags() {
     }
 }
 
-
+//Pega os gêneros dos jogos e exibe na página com um gráfico de pizza
 async function getGameGenres() {
     const tags = document.getElementById("tags");
     tags.innerHTML = "";
@@ -320,6 +320,7 @@ async function getGameGenres() {
         `hsl(${(i * 360 / Object.keys(genreCount).length)}, 70%, 60%)`
     );
 
+    // Cria o gráfico de pizza
     const ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, {
         type: 'pie',
@@ -339,4 +340,15 @@ async function getGameGenres() {
             }
         }
     });
+}
+
+//Mostra na página o total de jogos da lista
+function getTotal() {
+    const total = document.getElementById("total");
+    total.textContent = "Jogos: " + (JSON.parse(localStorage.getItem("jogos")) || []).length;
+}
+
+//Vai para a página de adição de jogos
+function addNewGamePage() {
+    window.location.href = "addGame.html"
 }

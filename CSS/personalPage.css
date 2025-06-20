@@ -75,6 +75,19 @@
   cursor: pointer;
   border: 5px solid;
   border-color: rgb(255, 255, 255);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card.saindo {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.card.entrando {
+  opacity: 0;
+  transform: scale(1.1);
 }
 
 .card::before,
