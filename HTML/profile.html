@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Já Joguei</title>
+
+    <link rel="stylesheet" href="/CSS/navBar.css">
+    <link rel="stylesheet" href="/CSS/background.css">
+    <link rel="stylesheet" href="/CSS/profile.css">
+    <link rel="shortcut icon" href="../Images/Logo.ico" type="image/x-icon">
+</head>
+
+<body class="body">
+    <div>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/Images/Logo.png" alt="Logo">
+            </div>
+            <ul>
+                <li><a href="/HTML/home.html">Home</a></li>
+                <li><a href="/HTML/personalPage.html">Meus Jogos</a></li>
+            </ul>
+            <div class="user">
+                <a href="/HTML/profile.html"><img src="../Images/user.png" alt="Img user"></a>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Meu Perfil</h1>
+        <div class="userImagem">
+            <img id="profilePic" class="profileImg" src="../Images/user.png" alt="Img user">
+            <label id="changeImg">
+                <input type="file" id="profileInp" class="profileInp" accept="image/*">
+                Escolher Imagem
+            </label>
+
+        </div>
+        <h2 id="userName">Nome</h2>
+        <h2 id="userEmail">Email</h2>
+    </div>
+    <script src="/JS/userInfos.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Já Joguei</title>
+
+    <link rel="stylesheet" href="/CSS/background.css">
+    <link rel="stylesheet" href="/CSS/login.css">
+    <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
+    <script type="module" src="/login.js" defer></script>
+</head>
+
+<body class="body">
+    <div class="rain" id="rain"></div>
+    <div class="outerbox">
+        <div class="container">
+            <div>
+                <h1 class="title">Já Joguei</h1>
+            </div>
+            <div class="login">
+                <div class="form__group field">
+                    <input id="email" type="input" class="form__field" placeholder="Email" required="">
+                    <label for="Email" class="form__label">Email</label>
+                </div>
+                <div class="form__group field">
+                    <input id="senha" type="password" class="form__field" placeholder="Senha" required="">
+                    <label for="Senha" class="form__label">Senha</label>
+                </div>
+                <div class="botoes">
+                    <button class="entrar" onclick="entrar()">Entrar</button>
+                    <button class="cadastrar" onclick="register()">Ainda não sou cadastrado</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

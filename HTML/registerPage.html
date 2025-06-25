@@ -19,31 +19,33 @@
             <div>
                 <h1 class="title">Cadastro</h1>
             </div>
-            <div class="login">
+            <form id="login" class="login">
                 <div class="form__group field">
-                    <input type="input" class="form__field" placeholder="Email" required="">
+                    <input id="email" type="input" class="form__field" placeholder="Email" required="">
                     <label for="Email" class="form__label">Digite seu email</label>
                 </div>
                 <div class="form__group field">
-                    <input type="input" class="form__field" placeholder="Email" required="">
+                    <input id="emailConfirm" type="input" class="form__field" placeholder="Email" required="">
                     <label for="Email" class="form__label">Confirme seu email</label>
                 </div>
                 <div class="form__group field">
-                    <input type="input" class="form__field" placeholder="Email" required="">
+                    <input id="nome" type="input" class="form__field" placeholder="Email" required="">
                     <label for="Email" class="form__label">Digite seu nome de usuário</label>
                 </div>
                 <div class="form__group field">
-                    <input type="password" class="form__field" placeholder="Senha" required="">
+                    <input id="senha" type="password" class="form__field" placeholder="Senha" required="">
                     <label for="Senha" class="form__label">Senha</label>
                 </div>
                 <div class="form__group field">
-                    <input type="password" class="form__field" placeholder="Senha" required="">
+                    <input id="senhaConfirm" type="password" class="form__field" placeholder="Senha" required="">
                     <label for="Senha" class="form__label">Confirme sua senha</label>
                 </div>
                 <div class="botoes">
-                    <button class="cadastro" style="font-size: 25px; padding: 10px 20px;">Cadastrar</button>
+                    <button onclick="cadastrar()" class="cadastro" type="submit"
+                        style="font-size: 25px; padding: 10px 20px;">Cadastrar</button>
+                    <div id="response"></div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>

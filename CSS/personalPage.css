@@ -79,6 +79,9 @@
   opacity: 1;
   transform: scale(1);
 }
+.card:hover{
+  transform: scale(1.05);
+}
 
 .card.saindo {
   opacity: 0;
@@ -133,6 +136,26 @@
   content: var(--after-content, "");
   text-align: center;
   opacity: 1;
+}
+
+.removeButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 2;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.5s;
+  transition-property: box-shadow;
+}
+
+.removeButton:hover {
+  box-shadow: 0 0 20px darkred;
 }
 
 .header {

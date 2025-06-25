@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/CSS/background.css">
     <link rel="stylesheet" href="/CSS/gamePage.css">
     <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
-    <script src="/main.js"></script>
+    <script src="/JS/main.js"></script>
 </head>
 
 <body class="body" onload="getGamePage(), loadRating(), loadStatus()">
@@ -20,11 +20,11 @@
                 <img src="/Images/Logo.png" alt="Logo">
             </div>
             <ul>
-                <li><a href="/home.html">Home</a></li>
+                <li><a href="/HTML/home.html">Home</a></li>
                 <li><a href="/HTML/personalPage.html">Meus Jogos</a></li>
             </ul>
             <div class = "user">
-                <a href="/HTML/account.html"><img src="../Images/user.png" alt="Img user"></a>
+                <a href="/HTML/profile.html"><img src="../Images/user.png" alt="Img user"></a>
             </div>
         </nav>
     </div>
@@ -73,14 +73,14 @@
             </div>
             <div>
                 <h3>Comentário</h3>
-                <input type="text" id="commentInput" class="commentInput" placeholder="Escreva seu comentário aqui..." oninput="writeComment()">
+                <textarea class="commentInput" oninput="autoResize(this), writeComment()"></textarea>
             </div>
             <div>
                 <button class="remove" onclick="removeGame()"> Remover Jogo </button>
             </div>
         </div>
     </div>
-    <script src="/rating.js"></script>
+    <script src="/JS/rating.js"></script>
 </body>
 
 </html>

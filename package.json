@@ -1,6 +1,31 @@
 {
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "chart.js": "^4.4.9",
-    "dotenv": "^16.5.0"
-  }
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.0",
+    "nodemon": "^3.1.10"
+  },
+  "name": "ja-joguei",
+  "version": "1.0.0",
+  "description": "Project",
+  "main": "login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViniQuadros/Ja-Joguei.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ViniQuadros/Ja-Joguei/issues"
+  },
+  "homepage": "https://github.com/ViniQuadros/Ja-Joguei#readme"
 }
