@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="/Images/Logo.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/main.js"></script>
+    <script src="/JS/profile.js"></script>
 </head>
 
 <body class="body" onload="getGameDevelopers(), getGameTags(), getGameGenres()">
@@ -25,7 +26,7 @@
                 <li><a href="/HTML/personalPage.html">Meus Jogos</a></li>
             </ul>
             <div class = "user">
-                <a href="/HTML/account.html"><img src="Images/user.png" alt="Img user"></a>
+                <img class="profileImg" id="profileImg" src="../Images/user.png" alt="Img user" onclick="goToProfile()">
             </div>
         </nav>
     </div>

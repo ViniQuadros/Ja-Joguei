@@ -95,9 +95,10 @@ function getNewGame() {
             div.style.borderColor = "white";
         }
 
+        //Cria botão de remover o jogo da array
         const removeButton = document.createElement("button");
         removeButton.className = "removeButton";
-        removeButton.id = "rmvb";
+        removeButton.id = "removeButton";
 
         //Ícone de lixeira
         const trashIcon = document.createElement("i");
@@ -106,8 +107,13 @@ function getNewGame() {
         removeButton.appendChild(trashIcon);
 
         removeButton.addEventListener("click", (e) => {
+            const index = games.findIndex(jogo => jogo.name === div.getAttribute("game-name"));
+            if (index !== -1) {
+                games.splice(index, 1);
+            }
+            localStorage.setItem("jogos", JSON.stringify(games));
+            location.reload();
             e.stopPropagation();
-            removeGame();
         });
 
         div.appendChild(removeButton);

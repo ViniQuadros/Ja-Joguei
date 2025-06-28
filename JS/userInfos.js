@@ -1,20 +1,21 @@
-import { userId } from "../login";
-
 async function getUser() {
     const userName = document.getElementById("userName");
     const userEmail = document.getElementById("userEmail");
 
     try {
-        const res = await fetch(`http://localhost:3000/user/${userId}`);
-        const user = res.json()
+        const res = await fetch(`http://localhost:3000/user/${localStorage.getItem("userId")}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const user = await res.json()
 
         userName.textContent = user.name;
+        userEmail.textContent = user.email;
     } catch (error) {
         console.error("Erro ao tentar encontrar usuário:", error);
     }
 }
 
-let userImagem = "";
 function updateProfilePic() {
     const img = document.getElementById("profilePic");
     const file = document.getElementById("changeImg");
@@ -32,14 +33,16 @@ function updateProfilePic() {
             };
 
             reader.readAsDataURL(event.target.files[0]);
+            location.reload();
         }
     });
 }
 
 function loadUserImg() {
     const img = document.getElementById("profilePic");
-    img.src = localStorage.getItem("userImg")
+    img.src = localStorage.getItem("userImg");
 }
 
 document.addEventListener('DOMContentLoaded', updateProfilePic);
 document.addEventListener('DOMContentLoaded', loadUserImg);
+document.addEventListener('DOMContentLoaded', getUser);

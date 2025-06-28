@@ -107,7 +107,9 @@ router.post('/signin', (req, res) => {
                             res.json({
                                 status: "SUCESSO",
                                 message: "Login completo",
-                                data: data
+                                userId: data[0]._id,
+                                name: data[0].name,
+                                email: data[0].email
                             })
                         } else {
                             res.json({
@@ -145,8 +147,8 @@ router.post('/add/:userId/:friendId', async (req, res) => {
     const user = await User.findById(userId);
     const friend = await User.findById(friendId);
 
-    if(!user || !friend) return res.status(404).send('Usuário não encontrado');
-    if(user.friends.includes(friendId)) return res.status(400).send('Já são amigos');
+    if (!user || !friend) return res.status(404).send('Usuário não encontrado');
+    if (user.friends.includes(friendId)) return res.status(400).send('Já são amigos');
 
     user.friends.push(friendId);
     await user.save();
@@ -158,7 +160,7 @@ router.post('/add/:userId/:friendId', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const user = await User.findById(req.params.id).select('-password').populate('friends', 'name email');
 
-    if(!user) return res.status(404).send('Usuário não encontrado');
+    if (!user) return res.status(404).send('Usuário não encontrado');
 
     res.json(user);
 })

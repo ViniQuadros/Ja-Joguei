@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/CSS/background.css">
     <link rel="stylesheet" href="/CSS/profile.css">
     <link rel="shortcut icon" href="../Images/Logo.ico" type="image/x-icon">
+    <script src="/JS/userInfos.js"></script>
+    <script src="/JS/profile.js"></script>
 </head>
 
 <body class="body">
@@ -23,7 +25,7 @@
                 <li><a href="/HTML/personalPage.html">Meus Jogos</a></li>
             </ul>
             <div class="user">
-                <a href="/HTML/profile.html"><img src="../Images/user.png" alt="Img user"></a>
+                <img class="profileImg" id="profileImg" src="../Images/user.png" alt="Img user" onclick="goToProfile()">
             </div>
         </nav>
     </div>
@@ -37,8 +39,8 @@
             </label>
 
         </div>
-        <h2 id="userName">Nome</h2>
-        <h2 id="userEmail">Email</h2>
+        <h2 id="userName"></h2>
+        <h2 id="userEmail"></h2>
     </div>
     <script src="/JS/userInfos.js"></script>
 </body>

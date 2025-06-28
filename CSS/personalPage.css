@@ -138,11 +138,15 @@
   opacity: 1;
 }
 
+.card:hover .removeButton{
+  opacity: 1;
+}
+
 .removeButton {
   position: absolute;
   top: 5px;
   right: 5px;
-  z-index: 2;
+  z-index: 5;
   background-color: #d9534f;
   color: white;
   border: none;
@@ -151,7 +155,8 @@
   border-radius: 4px;
   cursor: pointer;
   transition: 0.5s;
-  transition-property: box-shadow;
+  transition-property: box-shadow, opacity;
+  opacity: 0;
 }
 
 .removeButton:hover {

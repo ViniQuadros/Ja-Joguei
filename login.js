@@ -49,7 +49,6 @@ async function cadastrar() {
     }
 }
 
-let userId = "";
 async function entrar() {
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('senha').value.trim();
@@ -67,10 +66,10 @@ async function entrar() {
         });
 
         const data = await res.json();
-        console.log(data)
 
         if (data.status === "SUCESSO") {
-            userId = data.userId;
+            localStorage.setItem("userId", data.userId);
+            localStorage.setItem("userEmail", data.email);
             window.location.href = "/HTML/personalPage.html";
         } else {
             alert("Erro: " + data.message);
@@ -80,3 +79,5 @@ async function entrar() {
         alert("Erro ao conectar com o servidor.");
     }
 }
+
+
