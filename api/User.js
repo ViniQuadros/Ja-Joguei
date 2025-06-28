@@ -140,21 +140,32 @@ router.post('/signin', (req, res) => {
     }
 })
 
-//Adicionar amigo
-router.post('/add/:userId/:friendId', async (req, res) => {
-    const { userId, friendId } = req.params;
+// Buscar amigo
+router.post('/add/:userId/:friendName', async (req, res) => {
+  const { userId, friendName } = req.params;
 
+  try {
     const user = await User.findById(userId);
-    const friend = await User.findById(friendId);
+    const friend = await User.findOne({ name: friendName });
 
-    if (!user || !friend) return res.status(404).send('Usuário não encontrado');
-    if (user.friends.includes(friendId)) return res.status(400).send('Já são amigos');
+    if (!user || !friend) return res.status(404).json({ message: 'Usuário não encontrado' });
+    if (user.friends.includes(friend._id)) return res.status(400).json({ message: 'Já são amigos' });
 
-    user.friends.push(friendId);
+    user.friends.push(friend._id);
     await user.save();
 
-    res.send('Amigo adicionado com sucesso!')
+    res.json({ message: 'Amigo adicionado com sucesso!' });
+  } catch (err) {
+    res.status(500).json({ message: 'Erro interno do servidor' });
+  }
+});
+
+//Listar todos os usuários
+router.get('/', async (req, res) => {
+    const users = await User.find().select('-password');
+    res.json(users);
 })
+
 
 //Obter perfil de usuário
 router.get('/:id', async (req, res) => {
@@ -163,12 +174,6 @@ router.get('/:id', async (req, res) => {
     if (!user) return res.status(404).send('Usuário não encontrado');
 
     res.json(user);
-})
-
-//Listar todos os usuários
-router.get('/', async (req, res) => {
-    const users = await User.find().select('-password');
-    res.json(users);
 })
 
 module.exports = router;

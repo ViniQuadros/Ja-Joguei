@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
     color: white;
     width: 100%;
@@ -11,6 +10,7 @@
 .container img {
     height: 150px;
     width: 150px;
+    border: 5px solid black;
 }
 
 .container h1 {
@@ -34,4 +34,45 @@
     cursor: pointer;
     background-color: aqua;
     color: black;
+}
+
+.friends{
+    padding: 10px 12px;
+    position: absolute;
+    top: 0;
+    margin-top: 160px;
+    left: 0;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-conteudo {
+  background: rgb(132, 40, 145);
+  margin: 15% auto;
+  padding: 20px;
+  width: 400px;
+  border-radius: 5px;
+  border: 4px solid white;
+}
+
+.modal p{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.fechar {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
 }

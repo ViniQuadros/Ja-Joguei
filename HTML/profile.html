@@ -32,15 +32,28 @@
     <div class="container">
         <h1>Meu Perfil</h1>
         <div class="userImagem">
-            <img id="profilePic" class="profileImg" src="../Images/user.png" alt="Img user">
+            <img id="profilePic" class="profilePic" src="../Images/user.png" alt="Img user">
             <label id="changeImg">
                 <input type="file" id="profileInp" class="profileInp" accept="image/*">
                 Escolher Imagem
             </label>
-
         </div>
         <h2 id="userName"></h2>
         <h2 id="userEmail"></h2>
+        <div class="friends">
+            <button id="findFriend" onclick="findFriends()"> Adicionar Amigo </button>
+            <h2>Amigos:</h2>
+            <div id="amigos"></div>
+        </div>
+    </div>
+    <!-- Estrutura do Modal -->
+    <div id="meuModal" class="modal">
+        <div class="modal-conteudo">
+            <span onclick="closeModal()" class="fechar">&times;</span>
+            <p>Pesquise um amigo: </p>
+            <input id="friendSearch" type="search" placeholder="Digite o nome de usuário">
+            <button onclick="searchFriends()">Procurar</button>
+        </div>
     </div>
     <script src="/JS/userInfos.js"></script>
 </body>
