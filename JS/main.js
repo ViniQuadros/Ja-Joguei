@@ -216,7 +216,6 @@ function getPopularGames() {
     const container = document.getElementById("popularGames");
     container.innerHTML = "";
 
-
     fetch(`https://api.rawg.io/api/games?key=${apiKey}&ordering=-added&page_size=20`)
         .then(response => {
             if (!response.ok) throw new Error("Erro ao buscar jogos");
@@ -226,17 +225,16 @@ function getPopularGames() {
             data.results.forEach(game => {
                 const card = document.createElement("div");
                 card.classList.add("card");
-
                 card.style.backgroundImage = `url('${game.background_image}')`;
                 card.style.backgroundSize = "cover";
                 card.style.backgroundPosition = "center";
 
-                const gameNameContainer = document.createElement("p");
-                const gameLabel = document.getElementById("gameLabel");
-                gameNameContainer.textContent = game.name;
+                const gameName = document.createElement("p");
+                gameName.classList.add("game-name");
+                gameName.textContent = game.name;
 
-                gameLabel.appendChild(gameNameContainer);
-                container.appendChild(card);
+                card.appendChild(gameName); // adiciona dentro do card
+                container.appendChild(card); // só o card vai pro container
             });
         })
         .catch(error => {
@@ -244,6 +242,8 @@ function getPopularGames() {
             container.innerHTML = "<p style='color: red;'>Erro ao carregar os jogos.</p>";
         });
 }
+
+
 
 //Mostra na página o total de jogos da lista
 function getTotal() {
