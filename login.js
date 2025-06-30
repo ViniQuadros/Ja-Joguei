@@ -20,6 +20,10 @@ function register() {
     window.location.href = "/HTML/registerPage.html";
 }
 
+function back() {
+    window.location.href = "../loginPage.html";
+}
+
 async function cadastrar() {
     const email = document.getElementById('email').value.trim();
     const name = document.getElementById('nome').value.trim();
@@ -41,7 +45,7 @@ async function cadastrar() {
             body: JSON.stringify({ name, email, password })
         });
 
-        window.location.href = "loginPage.html";
+        window.location.href = "./loginPage.html";
 
     } catch (error) {
         console.error(error);

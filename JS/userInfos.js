@@ -50,17 +50,42 @@ function findFriends() {
 async function searchFriends() {
     const userId = localStorage.getItem("userId");
     const friendInput = document.getElementById("friendSearch");
-    const friendName = friendInput.value;
+    const friendName = friendInput.value.trim();
+    const erro = document.getElementById("error");
+    const errContainer = document.getElementById("errorContainer");
+
+    if (friendName === "") {
+        erro.textContent = "Campo está vazio";
+        errContainer.style.opacity = 1;
+        setTimeout(() => {
+            erro.textContent = "";
+            errContainer.style.opacity = 0;
+        }, 3000);
+        return;
+    }
 
     try {
         const res = await fetch(`http://localhost:3000/user/add/${userId}/${friendName}`, {
             method: "POST"
         });
-        const data = await res.json(); // agora é JSON de verdade
-        alert(data.message);
+        const data = await res.json();
+
+        erro.textContent = data.message;
+        errContainer.style.opacity = 1;
+
+        setTimeout(() => {
+            erro.textContent = "";
+            errContainer.style.opacity = 0;
+        }, 3000);
+
     } catch (error) {
-        console.error("Erro ao adicionar amigo:", error);
-        alert(`Erro ao tentar adicionar amigo: ${error}`);
+        erro.textContent = error.message || String(error);
+        errContainer.style.opacity = 1;
+
+        setTimeout(() => {
+            erro.textContent = "";
+            errContainer.style.opacity = 0;
+        }, 3000);
     }
 }
 
@@ -84,12 +109,11 @@ async function getFriends() {
             item.textContent = `${friend.name}`
             divFriends.appendChild(item);
         });
-        
+
     } catch (error) {
         console.error("Erro ao tentar encontrar amigos:", error);
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', updateProfilePic);
 document.addEventListener('DOMContentLoaded', loadUserImg);

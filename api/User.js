@@ -142,22 +142,22 @@ router.post('/signin', (req, res) => {
 
 // Buscar amigo
 router.post('/add/:userId/:friendName', async (req, res) => {
-  const { userId, friendName } = req.params;
+    const { userId, friendName } = req.params;
 
-  try {
-    const user = await User.findById(userId);
-    const friend = await User.findOne({ name: friendName });
+    try {
+        const user = await User.findById(userId);
+        const friend = await User.findOne({ name: friendName });
 
-    if (!user || !friend) return res.status(404).json({ message: 'Usuário não encontrado' });
-    if (user.friends.includes(friend._id)) return res.status(400).json({ message: 'Já são amigos' });
+        if (!user || !friend) return res.status(404).json({ message: 'Usuário não encontrado' });
+        if (user.friends.includes(friend._id)) return res.status(400).json({ message: 'Já são amigos' });
 
-    user.friends.push(friend._id);
-    await user.save();
+        user.friends.push(friend._id);
+        await user.save();
 
-    res.json({ message: 'Amigo adicionado com sucesso!' });
-  } catch (err) {
-    res.status(500).json({ message: 'Erro interno do servidor' });
-  }
+        res.json({ message: 'Amigo adicionado com sucesso!' });
+    } catch (err) {
+        res.status(500).json({ message: 'Erro interno do servidor' });
+    }
 });
 
 //Listar todos os usuários

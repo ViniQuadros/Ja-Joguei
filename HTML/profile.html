@@ -41,7 +41,7 @@
         <h2 id="userName"></h2>
         <h2 id="userEmail"></h2>
         <div class="friends">
-            <button id="findFriend" onclick="findFriends()"> Adicionar Amigo </button>
+            <button class="findFriend" id="findFriend" onclick="findFriends()"> Adicionar Amigo </button>
             <h2>Amigos:</h2>
             <div id="amigos"></div>
         </div>
@@ -50,9 +50,14 @@
     <div id="meuModal" class="modal">
         <div class="modal-conteudo">
             <span onclick="closeModal()" class="fechar">&times;</span>
-            <p>Pesquise um amigo: </p>
-            <input id="friendSearch" type="search" placeholder="Digite o nome de usuário">
-            <button onclick="searchFriends()">Procurar</button>
+            <p class="friendTitle">Pesquise um amigo: </p>
+            <div class="modalAdd">
+                <input id="friendSearch" type="text" autocomplete="off" name="text" class="input" placeholder="Usuário">
+                <button onclick="searchFriends()">Procurar</button>
+                <div class="errorContainer" id="errorContainer">
+                    <p class="error" id="error"></p>
+                </div>
+            </div>
         </div>
     </div>
     <script src="/JS/userInfos.js"></script>

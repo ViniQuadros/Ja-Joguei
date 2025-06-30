@@ -4,7 +4,7 @@ body, html {
 }
 
 .navbar {
-  background-color: #14002E;
+  background-color: #161616;
   display: flex;
   z-index: 1;
   border-bottom-left-radius: 10px;
